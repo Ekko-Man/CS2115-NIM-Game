@@ -1,9 +1,6 @@
 import os
 import json
 from flask import Flask, flash, request, redirect, render_template, url_for, session, request
-from flask_wtf import FlaskForm
-from wtforms import IntegerField, SubmitField
-from wtforms.validators import DataRequired
 
 
 app = Flask(__name__)
@@ -254,4 +251,4 @@ def move():
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host= '0.0.0.0', port=8080)
