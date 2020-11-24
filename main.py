@@ -97,7 +97,7 @@ def move():
         list_num_stone.append(int(tmp_num_stone))
 
     # Check vaild
-    if (move_pile+1) > num_pile:    #test after left
+    if move_pile > num_pile:    #test after left
         print("A out ")
         print(f"list_num_stone: {list_num_stone}\n")
         list_num_stone =convert_list_num_stone_to_str(list_num_stone)
@@ -112,10 +112,6 @@ def move():
     elif list_num_stone[move_pile-1] == left_stone:
         flash(f"Please take other pile of stones")
         list_num_stone = convert_list_num_stone_to_str(list_num_stone)
-        return redirect(url_for('game', list_num_stone=list_num_stone , num_pile=num_pile))
-    elif end_game(list_num_stone):
-        list_num_stone =convert_list_num_stone_to_str(list_num_stone)
-        flash(f"Player win")
         return redirect(url_for('game', list_num_stone=list_num_stone , num_pile=num_pile))
 
 
@@ -136,9 +132,13 @@ def move():
 
     list_num_stone[move_pile-1] = left_stone
 
+    if end_game(list_num_stone):
+        list_num_stone =convert_list_num_stone_to_str(list_num_stone)
+        flash(f"Player win")
+        return redirect(url_for('game', list_num_stone=list_num_stone , num_pile=num_pile))
+
     print(f"\nmove_pile: {move_pile}, left_stone: {left_stone}")
     print(f"num_pile: {num_pile}, list_num_stone: {list_num_stone}\n")
-    print("d out ")
 
     real_exist_pile = 0
     for ex_pi in list_num_stone:
